@@ -8,7 +8,7 @@ cloudwatch = boto3.client('cloudwatch', region)
 
 for instance in ec2.instances.all():
     instance_id = instance.id
-    print('ID: {}, Type: {}'.format(instance_id, instance.instance_type))
+    print('ID: {}, Tipo: {}'.format(instance_id, instance.instance_type))
 
     alarms = cloudwatch.describe_alarms()
     for alarm in alarms['MetricAlarms']:
@@ -45,8 +45,8 @@ for instance in ec2.instances.all():
                         }
 
                         cloudwatch.put_metric_alarm(**update_params)
-                        print(f"InstanceType and Device of Alarm '{alarm['AlarmName']}' updated.")
+                        print(f"Tipo da instância e do device do alarme '{alarm['AlarmName']}' atualizados.")
                     except Exception as e:
-                        print(f"Failed to update InstanceType or Device of alarm '{alarm['AlarmName']}': {str(e)}")
+                        print(f"Falha ao atualizar o alarme '{alarm['AlarmName']}': {str(e)}")
 
 
